@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-//import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +16,7 @@ public class JsonUtils {
 
     /**
      * readJson.
+     *
      * @param multipartFile multipartFile
      * @return obj
      */
@@ -50,11 +50,12 @@ public class JsonUtils {
 
     /**
      * exportJson.
+     *
      * @param response response
-     * @param obj obj
+     * @param obj      obj
      * @param fileName fileName
      */
-    public static void exportJson(HttpServletResponse response, Object obj, String fileName){
+    public static void exportJson(HttpServletResponse response, Object obj, String fileName) {
         try {
             String jsonString = JSON.toJSONString(obj,
                     SerializerFeature.PrettyFormat,
@@ -79,7 +80,7 @@ public class JsonUtils {
             OutputStream os = response.getOutputStream();
             byte[] buf = new byte[1024];
             int len = 0;
-            while((len = fis.read(buf)) != -1) {
+            while ((len = fis.read(buf)) != -1) {
                 os.write(buf, 0, len);
             }
             fis.close();
